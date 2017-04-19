@@ -1,0 +1,32 @@
+{
+  "name": "bc-21-quiz-application",
+  "version": "1.0.0",
+  "description": "Quiz Application",
+  "main": "app.js",
+  "scripts": {
+    "start": "app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iakhator/bc-21-quiz-application.git"
+  },
+  "author": "iakhator",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iakhator/bc-21-quiz-application/issues"
+  },
+  "homepage": "https://github.com/iakhator/bc-21-quiz-application#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "dotenv": "^4.0.0",
+    "ejs": "~2.5.2",
+    "express-flash-2": "^1.0.1",
+    "express-session": "^1.14.2",
+    "firebase": "^3.6.6",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.0"
+  }
+}
