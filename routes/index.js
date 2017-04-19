@@ -11,14 +11,45 @@ router.get('/dashboard', function(req, res) {
     res.render('quiz');
 });
 
+//signin routes
 router.get('/signin', function(req, res) {
     res.render('signin');
 });
 
+router.post('/signin', function(req, res) {
+	var email = req.body.email;
+	var password = req.body.password;
+
+	if(email === "" || password === "") {
+		res.flash('info', 'All fields are required.');
+		res.redirect('/signin');
+	}
+	firebase.auth().signInWithEmailAndPassword(email, password)
+	.then(function (user) {
+   	res.redirect('/dashboard');
+  })
+  .catch(function(error) {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    if (errorCode === 'auth/user-not-found') {
+      res.flash('info', 'User not Found.');
+      res.redirect('/signin');
+    }
+     else {
+     	if(errorCode === 'auth/wrong-password') {
+     		res.flash('info', 'Invalid username, password combination.');
+      		res.redirect('/signin');
+     	}
+      console.log(errorMessage);
+    }
+  });
+});
+
+
+//signup routes
 router.get('/signup', function(req, res) {
     res.render('signup');
-})
-
+});
 
 router.post('/signup', function(req, res) {
 	var email = req.body.email;
@@ -26,7 +57,7 @@ router.post('/signup', function(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 
-	if(email === "" || name === "" || username === "" || password === "") {
+	if(email === "" ||  name === "" || password === "") {
 		res.flash('info', 'All fields are required.');
 		res.redirect('/signup');
 	}
@@ -34,11 +65,10 @@ router.post('/signup', function(req, res) {
 	.then(function(user) {
 		firebase.database().ref('users/' + user.uid).set({
 	        email: email,
-	        username : username,
 	        name : name,
 	        password : password
 	     });
-		res.redirect('/success');
+		res.redirect('/dashboard');
 	})
 	.catch(function(error) {
 		var errorCode = error.code;
