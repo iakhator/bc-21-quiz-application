@@ -1,0 +1,25 @@
+<% include partials/header%>
+    <div class="container">
+        <div id="subject-list">
+            <select id="subject">
+                <option>Choose Subject</option>
+                <option name="maths" value="maths"> Mathematics </option>
+                <option name="english" value="english"> English </option>
+                <option name="programming" value="programming"> Programming </option>
+                <option name="general" value="general"> General </option>
+            </select>
+            <input id="changeSubject" type="button" value="Go" onclick="showQuestions()"/>
+        </div>
+        <div class="wrapper" id="wrapper">
+            <div id="quest" class="quest"></div>
+            <div>
+                <input type="radio" name="radio1" value="1"><span id="option1" ></span>
+                <input type="radio" name="radio1" value="2"><span id="option2" ></span>
+                <input type="radio" name="radio1" value="3"><span id="option3" ></span>
+                <input type="radio" name="radio1" value="4"><span id="option4" ></span>
+                <button name="btnnext" class="next-btn" id="btnext">Next</button>
+            </div>
+        </div>
+    </div>
+
+<% include partials/footer %>

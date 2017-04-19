@@ -1,3 +1,208 @@
 .wrapper{
     display: none;
 }
+
+body {
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav-wrapper {
+    background-image: url('../images/land.jpg');
+    background: radial-gradient(#fff176, orangered);
+    padding: 0;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 500px;
+    color: #fff;
+}
+
+.nav-wrapper a {
+    color: #fff;
+}
+
+
+/*desc*/
+
+.desc {
+    margin-top: 50px;
+}
+
+.desc span {
+    font-size: 15px;
+}
+
+.desc p {
+    font-size: 14px;
+}
+
+.desc i {
+    margin-left: 10px;
+}
+
+.desc button {
+    background: orangered;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    outline: none;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+img.image-right {
+    margin-top: -10px !important;
+}
+
+
+/*navbar*/
+
+.navbar {
+    margin-top: 30px;
+}
+
+.navbar a.navbar-brand {
+    font-size: 20px;
+}
+
+.navbar a span {
+    font-size: 13px;
+}
+
+.navbar ul li {
+    font-size: 12px;
+    margin-right: 12px;
+}
+
+.navbar ul li a:hover {
+    background: none;
+}
+
+.navbar ul li a:focus {
+    background: none;
+}
+
+.navbar ul li a:active {
+    background: none;
+}
+
+
+/*how to play*/
+
+.how-to-play {
+    margin-top: 10px;
+    color: #344;
+}
+
+.well {
+    font-weight: bold;
+    height: 300px;
+}
+
+.how-to-play h1 {
+    margin-top: 10px;
+}
+
+
+/*signin*/
+
+.signin-row {
+    padding: 10px;
+    background: #fff;
+    color: #444;
+    margin-top: 10px;
+    border-radius: 3px !important;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);
+}
+
+.signin-row a {
+    padding: 5px;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.social {
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.social p,
+.signin-row p {
+    color: #FF5F12;
+    font-weight: bold;
+}
+
+.social a {
+    font-size: 20px;
+    margin: 10px;
+    border-radius: 3px;
+    color: #fff;
+}
+
+input[type="text"] {
+    margin-bottom: 20px;
+    outline: none;
+    box-shadow: none;
+    border-radius: 3px !important;
+    border: 1px solid #ccc;
+}
+
+button.center {
+    border: none;
+    background: orangered;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+button.center:hover {
+    background: #FF5F12;
+    font-weight: bold;
+}
+
+
+/*home.html*/
+
+.play {
+    clear: both !important;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 10px;
+    margin-right: 40px;
+}
+
+a.btn-default {
+    border: none;
+    margin-right: 20px;
+    margin-top: -35px;
+    font-weight: bold;
+    padding: 10px 60px;
+    background: #FF5F12;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+a.btn-default:hover {
+    color: #fff;
+    font-weight: bold;
+    background: orangered;
+}
+
+.join {
+    clear: both !important;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.join a {
+    color: #fff;
+}
