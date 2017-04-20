@@ -7,7 +7,7 @@ function showQuestions() {
     firebase.database().ref(subject).on('value', function(snap) {
         var data = snap.val();
         if(data === null)  {
-            window.location.href = "/dashboard";
+            window.location.href = "/start";
             return;
         }
 
@@ -62,12 +62,13 @@ function showQuestions() {
          var option2 = document.getElementById('option2');
          var option3 = document.getElementById('option3');
          var option4 = document.getElementById('option4');
-
+         var topic = document.getElementById('topic');
          option1.innerHTML = q.answer1;
          option2.innerHTML = q.answer2;
          option3.innerHTML = q.answer3;
          option4.innerHTML = q.answer4;
-         quest.innerHTML = q.question;
+         quest.innerHTML = (questionIndex + 1)+'. ' + '  ' +q.question;
+         topic.innerHTML = subject.toUpperCase();
      }
 }
 

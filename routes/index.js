@@ -7,13 +7,18 @@ router.get('/', function(req, res) {
     res.render('home/home');
 });
 
-router.get('/dashboard', function(req, res) {
+router.get('/start', function(req, res) {
     res.render('quiz');
 });
 
 //signin routes
 router.get('/signin', function(req, res) {
-    res.render('signin');
+    var user = firebase.auth().currentUser;
+	if(user) {
+		res.redirect('/start');
+	} else {
+		res.render('signin', {user: user});
+	}
 });
 
 router.post('/signin', function(req, res) {
@@ -26,7 +31,7 @@ router.post('/signin', function(req, res) {
 	}
 	firebase.auth().signInWithEmailAndPassword(email, password)
 	.then(function (user) {
-   	res.redirect('/dashboard');
+   	res.redirect('/start');
   })
   .catch(function(error) {
     var errorCode = error.code;
@@ -48,7 +53,12 @@ router.post('/signin', function(req, res) {
 
 //signup routes
 router.get('/signup', function(req, res) {
-    res.render('signup');
+    var user = firebase.auth().currentUser;
+	if(user) {
+		res.redirect('/dashboard');
+	} else {
+		res.render('signup', {user: user});
+	}
 });
 
 router.post('/signup', function(req, res) {

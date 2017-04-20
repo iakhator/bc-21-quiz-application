@@ -117,7 +117,7 @@ img.image-right {
     color: #444;
     margin-top: 10px;
     border-radius: 3px !important;
-    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
 }
 
 .signin-row a {
@@ -213,4 +213,12 @@ a.btn-default:hover {
 
 .join a {
     color: #fff;
+}
+
+.well{
+    background: #FFFFCC;
+}
+
+.well i{
+    color: #FF711E;
 }
