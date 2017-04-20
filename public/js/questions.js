@@ -41,9 +41,15 @@ function showQuestions() {
                 btnNext.innerHTML = "Finish";
             }
             if(current === questionLength) {
-                wrapper.style.display = "none";
-                result.style.display = "";
-                result.innerHTML = "Your Score is " + score;
+                //calculate percentage;
+                var passMark = 50;
+                var per = ((score/questionLength) * 100) /10;
+                if(per >= 50) {
+                    wrapper.style.display = "none";
+                    result.style.display = "block";
+                    result.innerHTML = "Your Score is " + per + "%";
+                }
+
                 return;
             }
             getQuestions(current);

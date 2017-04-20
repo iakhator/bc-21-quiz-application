@@ -11,6 +11,20 @@ body {
     display: none;
 }
 
+.show-result{
+    /*display: none;*/
+    padding: 10px;
+
+}
+
+.congrats{
+    background: green;
+}
+
+.sad{
+    background: red;
+}
+
 .navbar a.navbar-brand {
     font-size: 20px;
 }
@@ -91,8 +105,8 @@ input[type="radio"]{
     border-radius: 4px;
 }
 
-.page-header p i{
-    
+.show-result{
+    border: 1px solid black;
 }
 
 .navbar-default {

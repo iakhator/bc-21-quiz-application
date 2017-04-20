@@ -66,7 +66,6 @@ router.post('/signup', function(req, res) {
 	var name = req.body.name;
 	var username = req.body.username;
 	var password = req.body.password;
-
 	if(email === "" ||  name === "" || password === "") {
 		res.flash('info', 'All fields are required.');
 		res.redirect('/signup');
