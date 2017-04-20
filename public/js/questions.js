@@ -19,6 +19,9 @@ function showQuestions() {
         var questionLength = questions.length;
         var wrapper = document.getElementById('wrapper');
         var result = document.getElementById('result');
+        var feedback = document.getElementById('feedback');
+        var scoreId = document.getElementById('score');
+        var smiley = document.getElementById('smiley');
         var btnNext = document.getElementById('btnext');
 
 
@@ -47,10 +50,19 @@ function showQuestions() {
                 if(per >= 50) {
                     wrapper.style.display = "none";
                     result.style.display = "block";
-                    result.innerHTML = "Your Score is " + per + "%";
+                    result.className  += " congrats";
+                    feedback.innerHTML = "Congratulations you pass the pass mark of <b>50</b>";
+                    scoreId.innerHTML = per+"%";
+                }else{
+                    wrapper.style.display = "none";
+                    result.style.display = "block";
+                    smiley.innerHTML = '<i class="fa fa-frown-o fa-5x" aria-hidden="true"></i>';
+                    result.className += " sad";
+                    feedback.innerHTML = "Oops you didn't pass the pass mark of <b>50</b> Try again";
+                    scoreId.innerHTML = per+"%";
                 }
 
-                return;
+                //return;
             }
             getQuestions(current);
         };

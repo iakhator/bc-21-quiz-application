@@ -11,18 +11,27 @@ body {
     display: none;
 }
 
-.show-result{
-    /*display: none;*/
+#result{
+    display: none;
     padding: 10px;
+}
 
+.btn-default a {
+    color: inherit;
+}
+
+.show-result span{
+    font-size: 100px;
 }
 
 .congrats{
-    background: green;
+    background: #dff0d8;
+    border: 1px solid #bce8f1;
 }
 
 .sad{
-    background: red;
+    background: #fcf8e3;
+    border: 1px solid #eed3d7;
 }
 
 .navbar a.navbar-brand {
@@ -106,7 +115,10 @@ input[type="radio"]{
 }
 
 .show-result{
-    border: 1px solid black;
+    border-radius: 5px;
+    width: auto;
+    height: auto;
+    postion: absolute;
 }
 
 .navbar-default {

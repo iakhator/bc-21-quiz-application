@@ -8,7 +8,21 @@ router.get('/', function(req, res) {
 });
 
 router.get('/start', function(req, res) {
-    res.render('quiz');
+    var user = firebase.auth().currentUser;
+    if(user) {
+       firebase.database().ref('users/' + user.uid).on('value', function(snap) {
+           name = snap.val().name;
+           email = snap.val().email;
+
+           res.render('quiz', {
+               name : name,
+               user: user,
+               email:email,
+           });
+       });
+    }else {
+       res.redirect('/');
+    }
 });
 
 //signin routes
@@ -90,6 +104,21 @@ router.post('/signup', function(req, res) {
 	    console.log(errorMessage);
 	  }
 	});
+});
+
+router.get('/signout', function(req, res) {
+  firebase.auth().signOut();
+  res.redirect('/');
+});
+
+
+router.get('*', function(req, res) {
+	var user = firebase.auth().currentUser;
+	if(user) {
+		res.redirect('/start');
+	} else {
+		res.render('404', {user: user});
+	}
 });
 
 
