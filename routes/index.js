@@ -8,13 +8,13 @@ router.get('/', function(req, res) {
 });
 
 router.get('/start', function(req, res) {
-        firebase.auth().onAuthStateChanged(function(user) {            
+        var user = firebase.auth().currentUser;
             if(user) {
                firebase.database().ref('users/' + user.uid).on('value', function(snap) {
                    name = snap.val().name;
                    email = snap.val().email;
 
-                   res.render('quiz', {
+                  res.render('quiz', {
                        name : name,
                        user: user,
                        email:email,
@@ -23,18 +23,16 @@ router.get('/start', function(req, res) {
             }else {
                res.redirect('/');
             }
-        });
 });
 
 //signin routes
 router.get('/signin', function(req, res) {
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            res.redirect('/start');
-        } else {
-            res.render('signin' , {user: user});
-        }
-    });
+    var user = firebase.auth().currentUser;
+    if (user) {
+        res.redirect('/start');
+    } else {
+        res.render('signin' , {user: user});
+    }
 });
 
 router.post('/signin', function(req, res) {
@@ -43,18 +41,18 @@ router.post('/signin', function(req, res) {
 
 	if(email === "" || password === "") {
 		res.flash('info', 'All fields are required.');
-		res.redirect('/signin');
+		return res.redirect('/signin');
 	}
 	firebase.auth().signInWithEmailAndPassword(email, password)
 	.then(function (user) {
-   	    res.redirect('/start');
+   	    return res.redirect('/start');
     })
   .catch(function(error) {
     var errorCode = error.code;
     var errorMessage = error.message;
     if (errorCode === 'auth/user-not-found') {
       res.flash('info', 'User not Found.');
-      res.redirect('/signin');
+      return res.redirect('/signin');
     }
      else {
      	if(errorCode === 'auth/wrong-password') {
@@ -69,13 +67,12 @@ router.post('/signin', function(req, res) {
 
 //signup routes
 router.get('/signup', function(req, res) {
-    firebase.auth().onAuthStateChanged(function(user) {
+    var user = firebase.auth().currentUser;
         if(user) {
-            res.redirect('/start');
+            return res.redirect('/start');
         } else {
             res.render('signup', {user: user});
         }
-    });
 });
 
 router.post('/signup', function(req, res) {
@@ -94,7 +91,7 @@ router.post('/signup', function(req, res) {
 	        name : name,
 	        password : password
 	     });
-		res.redirect('/dashboard');
+		res.redirect('/start');
 	})
 	.catch(function(error) {
 		var errorCode = error.code;
@@ -114,15 +111,6 @@ router.get('/signout', function(req, res) {
   res.redirect('/');
 });
 
-
-router.get('*', function(req, res) {
-	var user = firebase.auth().currentUser;
-	if(user) {
-		res.redirect('/start');
-	} else {
-		res.redirect('/');
-	}
-});
 
 
 module.exports = router;
