@@ -8,21 +8,22 @@ router.get('/', function(req, res) {
 });
 
 router.get('/start', function(req, res) {
-    var user = firebase.auth().currentUser;
-    if(user) {
-       firebase.database().ref('users/' + user.uid).on('value', function(snap) {
-           name = snap.val().name;
-           email = snap.val().email;
+        firebase.auth().onAuthStateChanged(function(user) {
+            if(user) {
+               firebase.database().ref('users/' + user.uid).on('value', function(snap) {
+                   name = snap.val().name;
+                   email = snap.val().email;
 
-           res.render('quiz', {
-               name : name,
-               user: user,
-               email:email,
-           });
-       });
-    }else {
-       res.redirect('/');
-    }
+                   res.render('quiz', {
+                       name : name,
+                       user: user,
+                       email:email,
+                   });
+               });
+            }else {
+               res.redirect('/');
+            }
+        });
 });
 
 //signin routes
@@ -67,12 +68,13 @@ router.post('/signin', function(req, res) {
 
 //signup routes
 router.get('/signup', function(req, res) {
-    var user = firebase.auth().currentUser;
-	if(user) {
-		res.redirect('/start');
-	} else {
-		res.render('signup', {user: user});
-	}
+    firebase.auth().onAuthStateChanged(function(user) {
+        if(user) {
+            res.render('/start');
+        } else {
+            res.render('signup', {user: user});
+        }
+    });
 });
 
 router.post('/signup', function(req, res) {
