@@ -8,9 +8,6 @@ var store = require('store');
 //   localStorage = new LocalStorage('./scratch');
 // }
 
-store.set('myFirstKey', {name: 'username'});
-
-console.log('myFirstKey', store.get('myFirstKey').name == 'username');
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('home/home');
@@ -21,8 +18,7 @@ router.get('/start', function(req, res) {
     // console.log(localStorage, 'localStorage')
     if(store.get('user')) {
         var user = JSON.parse(store.get('user'));
-        console.log('user', user)
-        console.log('userid')
+
        firebase.database().ref('users/' + user.uid).on('value', function(snap) {
            name = snap.val().name;
            email = snap.val().email;
@@ -44,8 +40,6 @@ router.get('/signin', function(req, res) {
     var user = store.get('user');
 
     if (user) {
-        console.log(user);
-        console.log(user.uid)
         res.redirect('/start');
     } else {
         res.render('signin' , {user: user});
@@ -109,8 +103,6 @@ router.post('/signup', function(req, res) {
 	} else {
         firebase.auth().createUserWithEmailAndPassword(email, password)
     	.then(function(user) {
-            console.log(user, 'user after signup');
-            console.log(user.uid, 'userid after signup')
     		firebase.database().ref('users/' + user.uid).set({
     	        email: email,
     	        name : name,
@@ -141,7 +133,7 @@ router.post('/signup', function(req, res) {
 
 router.get('/signout', function(req, res) {
   firebase.auth().signOut();
-  localStorage.clear();
+  store.clearAll();
   res.redirect('/');
 });
 
