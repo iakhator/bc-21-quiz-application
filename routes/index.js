@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/start', function(req, res) {
-        firebase.auth().onAuthStateChanged(function(user) {
+        firebase.auth().onAuthStateChanged(function(user) {            
             if(user) {
                firebase.database().ref('users/' + user.uid).on('value', function(snap) {
                    name = snap.val().name;
@@ -30,8 +30,9 @@ router.get('/start', function(req, res) {
 router.get('/signin', function(req, res) {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            res.locals.user = user;
             res.redirect('/start');
+        } else {
+            res.render('signin' , {user: user});
         }
     });
 });
@@ -70,7 +71,6 @@ router.post('/signin', function(req, res) {
 router.get('/signup', function(req, res) {
     firebase.auth().onAuthStateChanged(function(user) {
         if(user) {
-            req.locals.user = user;
             res.redirect('/start');
         } else {
             res.render('signup', {user: user});
