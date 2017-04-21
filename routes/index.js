@@ -28,12 +28,12 @@ router.get('/start', function(req, res) {
 
 //signin routes
 router.get('/signin', function(req, res) {
-    var user = firebase.auth().currentUser;
-	if(user) {
-		res.redirect('/start');
-	} else {
-		res.render('signin', {user: user});
-	}
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            res.locals.user = user;
+            res.redirect('/start');
+        }
+    });
 });
 
 router.post('/signin', function(req, res) {
@@ -70,7 +70,8 @@ router.post('/signin', function(req, res) {
 router.get('/signup', function(req, res) {
     firebase.auth().onAuthStateChanged(function(user) {
         if(user) {
-            res.render('/start');
+            req.locals.user = user;
+            res.redirect('/start');
         } else {
             res.render('signup', {user: user});
         }
