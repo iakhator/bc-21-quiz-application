@@ -1,9 +1,9 @@
 var questions = [];
 function showQuestions() {
-
     var subject = document.getElementById('subject').value;
-    console.log('Calling questions', subject );
+    var name = document.getElementById('name').value;
 
+    console.log('Calling questions', subject );
     firebase.database().ref(subject).on('value', function(snap) {
         var data = snap.val();
         if(data === null)  {
@@ -53,6 +53,11 @@ function showQuestions() {
                     result.className  += " congrats";
                     feedback.innerHTML = "Congratulations you pass the pass mark of <b>50%</b>";
                     scoreId.innerHTML = per+"%";
+                    firebase.database().ref('leaderboard/').push({
+                	    name : name,
+                        subject: subject,
+                	    score: per
+                    });
                 }else{
                     wrapper.style.display = "none";
                     result.style.display = "block";
@@ -60,9 +65,26 @@ function showQuestions() {
                     result.className += " sad";
                     feedback.innerHTML = "Oops you didn't pass the pass mark of <b>50%</b> Try again";
                     scoreId.innerHTML = per+"%";
+
+                    firebase.database().ref('leaderboard/').push({
+            		  name: name,
+            		  score: per,
+                      subject: subject
+                  }).then(function(snapshot) {
+                      var key = snapshot.key;
+                      return key;
+                  }).then(function(key) {
+                      firebase.database().ref('leaderboard').child(key).update({
+                          name : name,
+                          subject: subject,
+                          score: per
+                      });
+                  });
+
+
                 }
 
-                //return;
+                return;
             }
             getQuestions(current);
         };
@@ -100,5 +122,5 @@ go.addEventListener('click', function() {
     var subjectList = document.getElementById('subject-list');
     wrap.style.display = 'block';
     subjectList.style.display = 'none';
-    console.log(subject);
+
 });

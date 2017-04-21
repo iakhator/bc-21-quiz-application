@@ -45,8 +45,8 @@ router.post('/signin', function(req, res) {
 	}
 	firebase.auth().signInWithEmailAndPassword(email, password)
 	.then(function (user) {
-   	res.redirect('/start');
-  })
+   	    res.redirect('/start');
+    })
   .catch(function(error) {
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -69,7 +69,7 @@ router.post('/signin', function(req, res) {
 router.get('/signup', function(req, res) {
     var user = firebase.auth().currentUser;
 	if(user) {
-		res.redirect('/dashboard');
+		res.redirect('/start');
 	} else {
 		res.render('signup', {user: user});
 	}
