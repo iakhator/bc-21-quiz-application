@@ -117,7 +117,7 @@ router.get('*', function(req, res) {
 	if(user) {
 		res.redirect('/start');
 	} else {
-		res.render('404', {user: user});
+		res.redirect('/');
 	}
 });
 

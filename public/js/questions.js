@@ -35,7 +35,7 @@ function showQuestions() {
             }
             var answer = selectOption.value;
             if(questions[current].correct == answer) {
-                score += 10;
+                score += 1;
 
             }
             selectOption.checked = false;
@@ -46,19 +46,19 @@ function showQuestions() {
             if(current === questionLength) {
                 //calculate percentage;
                 var passMark = 50;
-                var per = ((score/questionLength) * 100) /10;
+                var per = (score/questionLength) * 100;
                 if(per >= 50) {
                     wrapper.style.display = "none";
                     result.style.display = "block";
                     result.className  += " congrats";
-                    feedback.innerHTML = "Congratulations you pass the pass mark of <b>50</b>";
+                    feedback.innerHTML = "Congratulations you pass the pass mark of <b>50%</b>";
                     scoreId.innerHTML = per+"%";
                 }else{
                     wrapper.style.display = "none";
                     result.style.display = "block";
                     smiley.innerHTML = '<i class="fa fa-frown-o fa-5x" aria-hidden="true"></i>';
                     result.className += " sad";
-                    feedback.innerHTML = "Oops you didn't pass the pass mark of <b>50</b> Try again";
+                    feedback.innerHTML = "Oops you didn't pass the pass mark of <b>50%</b> Try again";
                     scoreId.innerHTML = per+"%";
                 }
 
@@ -81,12 +81,16 @@ function showQuestions() {
          var option3 = document.getElementById('option3');
          var option4 = document.getElementById('option4');
          var topic = document.getElementById('topic');
+         var remainNumber = document.getElementById('remainNumber');
+         var totalNumber = document.getElementById('totalNumber');
          option1.innerHTML = q.answer1;
          option2.innerHTML = q.answer2;
          option3.innerHTML = q.answer3;
          option4.innerHTML = q.answer4;
          quest.innerHTML = (questionIndex + 1)+'. ' + '  ' +q.question;
          topic.innerHTML = subject.toUpperCase();
+         remainNumber.innerHTML = questionIndex + 1;
+         totalNumber.innerHTML = questions.length;
      }
 }
 

@@ -24,6 +24,16 @@ body {
     font-size: 100px;
 }
 
+.show-number{
+    float: left;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.total-number{
+    font-weight: bold;
+}
+
 .congrats{
     background: #dff0d8;
     border: 1px solid #bce8f1;
