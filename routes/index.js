@@ -56,7 +56,7 @@ router.post('/signin', function(req, res) {
 	}else {
         firebase.auth().signInWithEmailAndPassword(email, password)
     	.then(function (user) {
-            store.set('user', JSON.stringify(user))
+            store.set('user', JSON.stringify(user));
 
             // localStorage.setItem('user', JSON.stringify(user));
        	    res.redirect('/start');
@@ -109,12 +109,9 @@ router.post('/signup', function(req, res) {
     	        password : password
     	     });
 
-             store.set('user', JSON.stringify(user))
+             store.set('user', JSON.stringify(user));
              localStorage.setItem('user', JSON.stringify(user));
              var user1 = localStorage.getItem('user');
-             console.log(user1, 'user after saving to local');
-             console.log(user1.uid, 'userid after saving to local')
-
     		res.redirect('/start');
     	})
     	.catch(function(error) {
