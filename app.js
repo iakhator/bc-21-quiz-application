@@ -44,17 +44,6 @@ app.use(session({
   saveUninitialized:true}));
 app.use(flash());
 
-app.use(function(req,res,next){
-  var _send = res.send;
-  var sent = false;
-  res.send = function(data){
-    if(sent) return;
-    _send.bind(res)(data);
-    sent = true;
-};
-  next();
-});
-
 app.use('/', routes);
 
 app.listen(process.env.PORT || 8080, function() {

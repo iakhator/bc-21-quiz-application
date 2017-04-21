@@ -8,7 +8,6 @@ function showQuestions() {
         var data = snap.val();
         if(data === null)  {
             window.location.href = "/start";
-            return;
         }
 
         for (var i in data){
@@ -70,20 +69,8 @@ function showQuestions() {
             		  name: name,
             		  score: per,
                       subject: subject
-                  }).then(function(snapshot) {
-                      var key = snapshot.key;
-                      return key;
-                  }).then(function(key) {
-                      firebase.database().ref('leaderboard').child(key).update({
-                          name : name,
-                          subject: subject,
-                          score: per
-                      });
                   });
-
-
                 }
-
                 return;
             }
             getQuestions(current);
