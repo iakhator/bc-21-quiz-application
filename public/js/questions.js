@@ -1,5 +1,6 @@
 var questions = [];
 
+
 function showQuestions() {
     var subject = document.getElementById('subject').value;
     var name = document.getElementById('name').value;
@@ -15,7 +16,7 @@ function showQuestions() {
         }
         var current = 0;
         var score = 0;
-        var questionLength = getRandomQuestions(questions, 5).length;
+        var questionLength = 5;
         var wrapper = document.getElementById('wrapper');
         var result = document.getElementById('result');
         var feedback = document.getElementById('feedback');
@@ -84,6 +85,7 @@ function showQuestions() {
 
      function getQuestions(questionIndex) {
          questions = getRandomQuestions(questions, 5);
+         console.log(questions);
          var q = questions[questionIndex];
          var question = document.getElementById('quest');
          document.getElementById('option1').innerHTML = q.answer1;
@@ -116,6 +118,7 @@ function getRandomQuestions(arr, count) {
         temp = shuffled[index];
         shuffled[index] = shuffled[i];
         shuffled[i] = temp;
+
     }
     return shuffled.slice(min);
 }
