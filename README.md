@@ -14,6 +14,10 @@ The current Features are:
 ## Url
  - Go to the site [Quick Quiz](https://lit-tor-90868.herokuapp.com/)
 
+## Features not present
+- Timer
+- Loader(Spinner);
+
 ## Dependecies
 ###### BackEnd Dependecies
 - Firebase
