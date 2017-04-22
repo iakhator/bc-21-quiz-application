@@ -14,6 +14,7 @@ function showQuestions() {
         for (var i in data){
             questions.push(data[i]);
         }
+        questions = getRandomQuestions(questions, 5);
         var current = 0;
         var score = 0;
         var questionLength = 5;
@@ -84,8 +85,6 @@ function showQuestions() {
      });
 
      function getQuestions(questionIndex) {
-         questions = getRandomQuestions(questions, 5);
-         console.log(questions);
          var q = questions[questionIndex];
          var question = document.getElementById('quest');
          document.getElementById('option1').innerHTML = q.answer1;
