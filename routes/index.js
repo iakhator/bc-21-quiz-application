@@ -110,8 +110,13 @@ router.post('/signup', function(req, res) {
                 if (errorCode === 'auth/email-already-in-use') {
                     res.flash('info', 'That email is already in use.');
                     res.redirect('/signup');
-                    console.log('That email already exist');
-                } else {
+                } else if(errorCode === 'auth/invalid-email') {
+                    res.flash('info', 'Invalid email.');
+                    res.redirect('/signup');
+                }else if(errorCode === 'auth/weak-password') {
+                    res.flash('info', 'Password must be 6 characters long.');
+                    res.redirect('/signup');
+                }else {
                     console.log(errorMessage);
                 }
             });
