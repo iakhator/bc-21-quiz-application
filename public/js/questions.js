@@ -15,7 +15,7 @@ function showQuestions() {
         }
         var current = 0;
         var score = 0;
-        var questionLength = questions.length;
+        var questionLength = getRandomQuestions(questions, 5).length;
         var wrapper = document.getElementById('wrapper');
         var result = document.getElementById('result');
         var feedback = document.getElementById('feedback');
