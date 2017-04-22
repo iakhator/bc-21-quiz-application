@@ -1,9 +1,9 @@
 var questions = [];
+
 function showQuestions() {
     var subject = document.getElementById('subject').value;
     var name = document.getElementById('name').value;
 
-    console.log('Calling questions', subject );
     firebase.database().ref(subject).on('value', function(snap) {
         var data = snap.val();
         if(data === null)  {
@@ -83,22 +83,19 @@ function showQuestions() {
      });
 
      function getQuestions(questionIndex) {
+         questions = getRandomQuestions(questions, 5);
          var q = questions[questionIndex];
          var question = document.getElementById('quest');
-         var option1 = document.getElementById('option1');
-         var option2 = document.getElementById('option2');
-         var option3 = document.getElementById('option3');
-         var option4 = document.getElementById('option4');
+         document.getElementById('option1').innerHTML = q.answer1;
+         document.getElementById('option2').innerHTML = q.answer2;
+         document.getElementById('option3').innerHTML = q.answer3;
+         document.getElementById('option4').innerHTML = q.answer4;
          var topic = document.getElementById('topic');
          var remainNumber = document.getElementById('remainNumber');
          var totalNumber = document.getElementById('totalNumber');
-         option1.innerHTML = q.answer1;
-         option2.innerHTML = q.answer2;
-         option3.innerHTML = q.answer3;
-         option4.innerHTML = q.answer4;
          quest.innerHTML = (questionIndex + 1)+'. ' + '  ' +q.question;
          topic.innerHTML = subject.toUpperCase();
-         remainNumber.innerHTML = questionIndex + 1;
+         remainNumber.innerHTML = (questionIndex + 1) + " of ";
          totalNumber.innerHTML = questions.length;
      }
 }
@@ -111,3 +108,14 @@ go.addEventListener('click', function() {
     subjectList.style.display = 'none';
 
 });
+
+function getRandomQuestions(arr, count) {
+    var shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
+    while (i-- > min) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(min);
+}

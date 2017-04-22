@@ -6,10 +6,10 @@ Quick Quiz is a JavaScript powered Question and Answer Application
 ## Features
 The current Features are:
 - Signin and Signup
-- Questions
 - Different sections
 - Score board
 - Leaderscore board
+- Random Questions
 
 ## Url
  - Go to the site [Quick Quiz](https://lit-tor-90868.herokuapp.com/)
